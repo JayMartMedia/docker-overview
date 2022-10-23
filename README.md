@@ -87,6 +87,17 @@ We will discuss using docker to create an image, run the image as a container, a
 
 ## Interacting with a running container
 
+There are three main ways to interact with a docker container:
+- `docker log`
+- `docker attach`
+- `docker exec`
+
+Docker log allows is essentially piping the stdout of the docker CMD to your terminal. Using `CTRL`+`C` stops the tail, but allows the process to continue in the container.
+
+Docker attach allows you to attach your terminal to the stdin and stdout of the running process in the docker container. This allows you to view the output of the docker CMD, and also interact via stdin. This means that you can respond to prompts and more. Since your terminal is attached to stdin, using `CTRL`+`C` sends the signal interrupt to the docker container, which ends the process and stops the docker container.
+
+Docker exec creates a new process on the docker container. This can allow you to dig through the filesystem of the docker container, and run other commands. Using `CTRL`+`C` sends a signal interrupt to the newly created process, which disconnects but allows the container to continue running.
+
 # Using Docker (advanced)
 
 ## Connecting Docker containers on a network
