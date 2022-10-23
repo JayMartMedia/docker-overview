@@ -1,3 +1,14 @@
+# Overview
+
+This article covers the following topics:
+- The difference between a physical server, a VM and containerization
+- Docker terminology
+- How to use Docker to:
+    - Build an image
+    - Run a basic container from an image
+    - Interact with a running container
+    - Connect multiple containers with a Docker network
+
 # What problem does containerization solve?
 
 While it is true that containerization isolates processes, that is not the actual selling point of containers. Isolating processes is a solved problem. Run each application on a separate physical server. Boom, problem solved. It's expensive, and difficult to maintain, but your processes are isolated.
@@ -52,4 +63,32 @@ Docker containers adhere to the [Open Container Initiative](https://opencontaine
 
 I would actually say that IIS is somewhat a form of Windows based containerization. Although it doesn't appear to follow an Infrastructure as Code pattern.
 
+# Docker Terminology
+
+**Dockerfile**
+
+The blueprint for building a Docker image. The Dockerfile specifies the starting point for the Docker image, as well as commands to be run when creating the image.
+
+**Image**
+
+A runnable version of a Docker container. This is the result of running `docker build` on a Dockerfile.
+
+**Container**
+
+A running (or stopped) instance of a Docker image. This is the result of running `docker run`
+
 # Using Docker
+
+We will discuss using docker to create an image, run the image as a container, and interact with the running container.
+
+## Creating an image
+
+## Running a container from an image
+
+## Interacting with a running container
+
+# Using Docker (advanced)
+
+## Connecting Docker containers on a network
+
+# Summary
