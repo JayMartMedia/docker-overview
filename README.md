@@ -1,16 +1,14 @@
-# What is Docker and What is Docker NOT
+# What problem does containerization solve?
 
-Docker is a containerization tool used to isolate applications in a time and resource efficient way.
+While it is true that containerization isolates processes, that is not the actual selling point of containers. Isolating processes is a solved problem. Run each application on a separate physical server. Boom, problem solved. It's expensive, and difficult to maintain, but your processes are isolated.
 
-In practice, Docker is similar to a virtual machine, but underneath it is completely different.
+The actual problem that containerization solves is **isolating processes efficiently**.
 
-Docker is used to build, share and run containers. Often other tools are used for container orchestration (scaling/restarting/etc).
+# Comparing Options to Isolate apps
 
-## Comparing Options to Isolate apps
+![physical server vs. vm vs. containers](./images/vm-vs-container.svg =800x)
 
-![physical server vs. vm vs. containers](./images/vm-vs-container.svg)
-
-### Physical Servers
+## Physical Servers
 
 At the end of the day, everything is running on physical hardware. But setting up a physical server for each application is not an efficient way to isolate apps. Setting up a new server is a costly, manual process that can take days or weeks depending on org structure and priority.
 
@@ -18,7 +16,7 @@ At the end of the day, everything is running on physical hardware. But setting u
 - ❌ Takes a lot of time to acquire/configure a new server (days or weeks)
 - ❌ Setting up a new physical server is a very manual process
 
-### Virtual Machines
+## Virtual Machines
 
 A VM is a full on operating system running on the virtualized hardware of the physical server. A hypervisor is used to virtualize the physical hardware. Virtual machines have a full on copy of the operating system. Starting up a VM can take minutes.
 
@@ -26,12 +24,32 @@ A VM is a full on operating system running on the virtualized hardware of the ph
 - ❌ Each VM requires its own copy of the OS (GBs)
 - ⚠ Startup time takes minutes
 
-### Containers
+## Containers
 
-Containers...
+<!-- ![google: containers defined](./images/google-containers-defined.png =800x) -->
+
+The concept of containerization leaves some room for interpretation but in short:
+
+> Containers are lightweight packages of your application code together with dependencies such as specific versions of programming language runtimes and libraries required to run your software services. - [cloud.google.com](https://cloud.google.com/learn/what-are-containers)
+
+Containers are a lightweight way of running isolated (ish) processes on a single OS. There are different methods of containerization (see [history of containerization](https://blog.aquasec.com/a-brief-history-of-containers-from-1970s-chroot-to-docker-2016)) but the introduction of Docker in 2013 is when containerization really started to take off.
 
 - ✅ Can run multiple containers on a single OS
-- ✅ Containers share the host machines kernel and libraries (read only) which makes the container itself small (MBs)
+- ✅ Containers share the host machines kernel and libraries (read only for Docker) which makes the container itself small (MBs)
 - ✅ Startup time takes seconds
 
-# Why would I use docker
+### Docker
+
+Docker is a linux based, infrastructure as code containerization tool.
+
+Docker is used to build, share and run containers. Often other tools are used for container orchestration (scaling/restarting/etc).
+
+In practice, I think of Docker as similar to a virtual machine, however the way that containers actually work is completely different.
+
+Docker containers adhere to the [Open Container Initiative](https://opencontainers.org/) (OCI) specification. This means that Docker containers can (usually) be run by other implementations of the OCI spec such as [podman](https://podman.io/) (Pod Manager), [containerd](https://containerd.io/) and more.
+
+### IIS
+
+I would actually say that IIS is somewhat a form of Windows based containerization. Although it doesn't appear to follow an Infrastructure as Code pattern.
+
+# Using Docker
