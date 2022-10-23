@@ -6,7 +6,7 @@ The actual problem that containerization solves is **isolating processes efficie
 
 # Comparing Options to Isolate apps
 
-![physical server vs. vm vs. containers](./images/vm-vs-container.svg =800x)
+<img src="./images/vm-vs-container.svg" alt="physical server vs. vm vs. containers" width="800"/>
 
 ## Physical Servers
 
