@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
 import express from 'express';
+import cors from 'cors';
 
 // Connection URL
 const url = process.env.MONGO_URL ?? 'mongodb://localhost:27017';
@@ -16,8 +17,19 @@ async function main() {
   const noteCollection = db.collection('notes');
 
   // startup express server
+  // setup express server
+  const envAllowedOrigins: string[] = process.env.ALLOWED_ORIGINS?.split(',') ?? [];
+  const allowedOrigins: string[] = [
+    'https://localhost:2999',
+    'http://localhost:3000',
+    'http://192.168.1.249:3000',
+    ...envAllowedOrigins
+  ];
   const app = express();
   app.use(express.json());
+  app.use(cors({
+    origin: allowedOrigins
+}));
 
   const port = process.env.PORT ?? 3001;
 
