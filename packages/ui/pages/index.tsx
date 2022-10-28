@@ -1,15 +1,17 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import DisplayDate from '../components/DisplayDate';
 import { getNotes } from '../services/noteService';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/index.module.css'
 
 interface Note {
   _id: string;
   text: string;
+  title: string;
   timestamp: number;
 }
 
-export default function Home() {
+export default function index() {
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
@@ -36,8 +38,9 @@ export default function Home() {
 
 function Note({note}: {note: Note}) {
   return (
-    <div>
-      <h3>{note.timestamp}</h3>
+    <div className={styles.card}>
+      <h3>{note.title}</h3>
+      <p>{note.timestamp ? <DisplayDate timestamp={note.timestamp}/>: "No Timestamp"}</p>
       <div>{note.text}</div>
     </div>
   )
