@@ -46,12 +46,24 @@ async function main() {
     try{
         const text = req.body.text;
         const title = req.body.title;
+        const timestamp = Date.now();
         const result = await noteCollection.insertOne({
             text: text,
             title: title,
-            timestamp: Date.now()
+            timestamp: timestamp
         });
-        res.send(result);
+        // @ts-ignore
+        if(result.insertedId){
+          res.send({
+            text: text,
+            title: title,
+            timestamp: timestamp,
+            // @ts-ignore
+            _id: result.insertedId
+          })
+        }else{
+          res.send(result);
+        }
     }catch(e){
         console.error(e);
         res.status(500).send('Failed to insert note');

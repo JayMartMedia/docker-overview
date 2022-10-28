@@ -21,3 +21,8 @@
 .card h3 {
   margin: 0px
 }
+
+.createNote input, .createNote textarea {
+  display:block;
+  margin-top: 5px;
+}

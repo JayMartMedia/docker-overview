@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import DisplayDate from '../components/DisplayDate';
-import { getNotes } from '../services/noteService';
+import { addNote, getNotes } from '../services/noteService';
 import styles from '../styles/index.module.css'
 
-interface Note {
+export interface Note {
   _id: string;
   text: string;
   title: string;
@@ -21,6 +21,12 @@ export default function index() {
     })();
   }, []);
 
+  function addLocalNote (note: Note) {
+    setNotes((oldNotes) => {
+      return [note, ...oldNotes]
+    });
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -30,8 +36,32 @@ export default function index() {
       </Head>
 
       <main className={styles.main}>
+        <CreateNote addLocalNote={addLocalNote} />
         <Notes notes={notes}/>
       </main>
+    </div>
+  )
+}
+
+function CreateNote({addLocalNote}: {addLocalNote: (note: Note) => void}) {
+  const [title, setTitle] = useState<string>('');
+  const [text, setText] = useState<string>('');
+
+  async function onButtonClick () {
+    debugger;
+    const createdNote = await addNote({title, text});
+    addLocalNote(createdNote);
+    setText('');
+    setTitle('');
+  }
+
+  return (
+    <div className={styles.createNote}>
+      <div>Title</div>
+      <input type={'text'} onChange={(e) => {setTitle(e.target.value)}}/>
+      <div>Text</div>
+      <textarea onChange={(e) => {setText(e.target.value)} }/>
+      <input type={'button'} onClick={onButtonClick} value={"Add Note"}/>
     </div>
   )
 }
