@@ -59,10 +59,6 @@ In practice, I think of Docker as similar to a virtual machine, however the way 
 
 Docker containers adhere to the [Open Container Initiative](https://opencontainers.org/) (OCI) specification. This means that Docker containers can (usually) be run by other implementations of the OCI spec such as [podman](https://podman.io/) (Pod Manager), [containerd](https://containerd.io/) and more.
 
-### IIS
-
-I would actually say that IIS is somewhat a form of Windows based containerization. Although it doesn't appear to follow an Infrastructure as Code pattern.
-
 # Docker Terminology
 
 **Dockerfile**
@@ -80,6 +76,8 @@ A running (or stopped) instance of a Docker image. This is the result of running
 # Using Docker
 
 We will discuss using docker to create an image, run the image as a container, and interact with the running container.
+
+The most frequent command that I use is `docker ps` (alias of `docker container list`) this shows a list of running containers. This command throws an error if docker isn't running.
 
 ## Creating an image
 
