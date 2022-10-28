@@ -86,11 +86,11 @@ The most frequent command that I use is `docker ps` (alias of `docker container 
 ## Interacting with a running container
 
 There are three main ways to interact with a docker container:
-- `docker log`
-- `docker attach`
-- `docker exec`
+- `docker logs {containerHash} -f`
+- `docker attach {containerHash}`
+- `docker exec -it {containerHash} sh`
 
-Docker log allows is essentially piping the stdout of the docker CMD to your terminal. Using `CTRL`+`C` stops the tail, but allows the process to continue in the container.
+Docker log allows is essentially piping the stdout of the docker CMD to your terminal. Using `CTRL`+`C` stops the follow, but allows the process to continue in the container.
 
 Docker attach allows you to attach your terminal to the stdin and stdout of the running process in the docker container. This allows you to view the output of the docker CMD, and also interact via stdin. This means that you can respond to prompts and more. Since your terminal is attached to stdin, using `CTRL`+`C` sends the signal interrupt to the docker container, which ends the process and stops the docker container.
 
