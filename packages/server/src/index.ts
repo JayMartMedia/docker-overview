@@ -34,7 +34,8 @@ async function main() {
     try{
         const text = req.body.text
         const result = await noteCollection.insertOne({
-            text: text
+            text: text,
+            timestamp: Date.now()
         });
         res.send(result);
     }catch(e){
