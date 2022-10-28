@@ -26,3 +26,12 @@
   display:block;
   margin-top: 5px;
 }
+
+.timestamp {
+  font-size: .7em;
+  color: #555;
+}
+
+.required {
+  color: rgb(223, 0, 0);
+}

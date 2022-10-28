@@ -48,7 +48,7 @@ function CreateNote({addLocalNote}: {addLocalNote: (note: Note) => void}) {
   const [text, setText] = useState<string>('');
 
   async function onButtonClick () {
-    debugger;
+    if(text.length === 0) return;
     const createdNote = await addNote({title, text});
     addLocalNote(createdNote);
     setText('');
@@ -59,7 +59,7 @@ function CreateNote({addLocalNote}: {addLocalNote: (note: Note) => void}) {
     <div className={styles.createNote}>
       <div>Title</div>
       <input type={'text'} onChange={(e) => {setTitle(e.target.value)}}/>
-      <div>Text</div>
+      <div>Text<span className={styles.required}>*</span></div>
       <textarea onChange={(e) => {setText(e.target.value)} }/>
       <input type={'button'} onClick={onButtonClick} value={"Add Note"}/>
     </div>
@@ -70,7 +70,7 @@ function Note({note}: {note: Note}) {
   return (
     <div className={styles.card}>
       <h3>{note.title}</h3>
-      <p>{note.timestamp ? <DisplayDate timestamp={note.timestamp}/>: "No Timestamp"}</p>
+      <div className={styles.timestamp}>{note.timestamp ? <DisplayDate timestamp={note.timestamp}/>: "No Timestamp"}</div>
       <div>{note.text}</div>
     </div>
   )
@@ -80,7 +80,7 @@ function Notes({notes}: {notes: Note[]}) {
   return (
     <div>
       {notes.map(note => {
-        return <Note note={note} />
+        return <Note note={note} key={note._id}/>
       })}
     </div>
   )
