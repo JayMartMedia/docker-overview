@@ -38,15 +38,17 @@ async function main() {
   });
 
   app.get('/notes', async (req, res) => {
-    const notes = await noteCollection.find({}).toArray();
+    const notes = await noteCollection.find({}).sort({timestamp: -1}).toArray();
     res.send(notes);
   });
 
   app.post('/notes', async (req, res) => {
     try{
-        const text = req.body.text
+        const text = req.body.text;
+        const title = req.body.title;
         const result = await noteCollection.insertOne({
             text: text,
+            title: title,
             timestamp: Date.now()
         });
         res.send(result);
